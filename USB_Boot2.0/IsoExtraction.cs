@@ -1,5 +1,4 @@
 ﻿using DiscUtils;
-using DiscUtils.Iso9660;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +7,7 @@ using System.Windows;
 
 namespace USB_boot
 {
+    // used sample from https://stackoverflow.com/questions/10579964/extract-iso-with-winrar-automatically-with-c-sharp-or-batch
     class IsoExtraction
     {
         public static void ReadIsoFile(string sIsoFile, string sDestinationRootPath)
@@ -64,7 +64,6 @@ namespace USB_boot
                         else
                         {
                             fsDest.Write(baData, 0, nReadCount);
-
                         }
                     }
                     streamIsoFile.Close();

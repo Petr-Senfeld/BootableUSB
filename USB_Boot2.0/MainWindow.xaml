@@ -1,0 +1,13 @@
+﻿<Window x:Class="USB_boot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:USB_boot"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="290" Width="300">
+    <Grid Background="#FFBBD9E4" Margin="0,0,0,0">
+        <Button Content="Vytvoř USB" HorizontalAlignment="Left" Margin="75,190,0,0" VerticalAlignment="Top" Height="40" Width="130" Click="Button_Create_USB"/>
+        <ComboBox x:Name="USBbox" HorizontalAlignment="Center" VerticalAlignment="Top" Height="25" Width="185" Margin="51,70,56,0"/>
+    </Grid>
+</Window>
