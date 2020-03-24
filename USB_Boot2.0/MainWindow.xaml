@@ -7,7 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="290" Width="300">
     <Grid Background="#FFBBD9E4" Margin="0,0,0,0">
-        <Button Content="Vytvoř USB" HorizontalAlignment="Left" Margin="75,190,0,0" VerticalAlignment="Top" Height="40" Width="130" Click="Button_Create_USB"/>
+        <Button x:Name="CreateButton" Content="Vytvoř USB" HorizontalAlignment="Left" Margin="75,190,0,0" VerticalAlignment="Top" Height="40" Width="130" Click="Button_Create_USB">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger 
+                     Binding ="{Binding ElementName=USBbox, Path=SelectedIndex}" 
+                     Value="-1">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <ComboBox x:Name="USBbox" HorizontalAlignment="Center" VerticalAlignment="Top" Height="25" Width="185" Margin="51,70,56,0"/>
     </Grid>
 </Window>

@@ -12,11 +12,9 @@ namespace USB_boot
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
             InitializeComponent();
-            
             // Getting all the removable drives
             DriveInfo[] allDrives = DriveInfo.GetDrives();
             foreach (DriveInfo d in allDrives)
@@ -48,7 +46,7 @@ namespace USB_boot
             MessageBoxResult messageResult = MessageBox.Show("Právě se chystáte  naformátovat USB, všechna data budou nenavrátně ztracena!", "UPOZORNĚNÍ", MessageBoxButton.YesNo);
             if (messageResult == MessageBoxResult.Yes)
             {
-                string USBdriveLetter = USBbox.SelectedItem.ToString().Substring(0, 1); // USB drive letter
+                string USBdriveLetter = USBbox.SelectedItem.ToString().Substring(0, 1); // USB drive 
                 // Fortmating drive
                 Format.FormatDrive(USBdriveLetter);
                 // Work with XML within the app directory
