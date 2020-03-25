@@ -36,7 +36,7 @@ namespace USB_boot
         }
         public static int GetIndexOfDrive(string drive)
         {
-            // execute DiskPart programatically
+            // execute DiskPart to get list of volumes
             Process process = new Process();
             process.StartInfo.FileName = "diskpart.exe";
             process.StartInfo.UseShellExecute = false;
@@ -53,17 +53,15 @@ namespace USB_boot
             string table = output.Split(new string[] { "DISKPART>" }, StringSplitOptions.None)[1];
             var rows = table.Split(new string[] { "\n" }, StringSplitOptions.None);
             List<string> letters = new List<string>();
-            int result;
             for (int i = 3; i < rows.Length; i++)
             {
                 if (rows[i].Contains("Volume"))
                 {
-                    //int index = Int32.Parse(rows[i].Split(new string[] { " " }, StringSplitOptions.None)[3]);
                     letters.Add(rows[i].Split(new string[] { " " }, StringSplitOptions.None)[8]);
                 }
             }
             letters.RemoveAll(x => x == "");
-            result = letters.IndexOf(drive);
+            int result = letters.IndexOf(drive);
             return result;
         }
     }
