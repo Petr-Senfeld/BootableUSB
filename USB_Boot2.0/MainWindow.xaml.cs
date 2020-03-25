@@ -48,7 +48,7 @@ namespace USB_boot
             {
                 string USBdriveLetter = USBbox.SelectedItem.ToString().Substring(0, 1); // USB drive 
                 // Fortmating drive
-                Format.FormatDrive(USBdriveLetter);
+                //Format.FormatDrive(USBdriveLetter);
                 // Work with XML within the app directory
                 string XMLFilePath = Path.Combine(Directory.GetCurrentDirectory(), @"data\config.xml");
                 XmlDocument doc = new XmlDocument();

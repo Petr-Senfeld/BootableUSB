@@ -28,6 +28,11 @@ namespace USB_boot
                     return;
                 }
             }
+            catch(FileNotFoundException e)
+            {
+                MessageBox.Show($"Cesta k souboru neexistuje: {sIsoFile} \nZkontrolujte prosím data\\config.xml");
+                Application.Current.Shutdown();
+            }
             finally
             {
                 if (streamIsoFile != null)
