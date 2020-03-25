@@ -1,0 +1,20 @@
+Funkce aplikace:
+1. aplikace vyhledá Removeables větší než 7Gb
+2. po stisku "Vytvoř USB" vyskočí zpráva "warning o formátování" (ano/ne) a následně se USB naformátuje dle zadání
+3. načtení souboru "config.xml" dle zadání, kde je cesta na ISO
+4. Vyskočí "Waiting window"
+5. Kopírovaní pomoci DiscUtils z ISO souboru na USB
+6. Uzavře se "Waiting window"
+7. Odpoji se USB a ukončí aplikace
+
+Je mozne upravit app.manifest na r28 kvuli AdminPrivileges
+***************************************************
+
+To do:
+----------
+1. Typ partition MBR (tak nějak nerozomím co to je, nejsou všechny USB mbr defaultne?)
+2. Je nutno dodělat několik ošetření proti blbosti
+
+HELP:
+---------
+1. "Waiting window" sice naskočí ale zobrazí se jen bíle, bez textu. Když ho spustím přes jiný Button, normálně se spustí.
