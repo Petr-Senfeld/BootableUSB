@@ -28,7 +28,6 @@ C:\> "%windir%\System32\WindowsPowerShell\v1.0\powershell.exe" -executionpolicy 
 http://www.michalzobec.cz/
 
 #>
-Set-StrictMode -Version Latest
 
 param(
 	[string]$projectDir
