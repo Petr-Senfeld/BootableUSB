@@ -116,4 +116,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>"powershell.exe" -executionpolicy bypass -file $(ProjectDir)\Scripts\AutoGenAssemblyVersion.ps1 $(ProjectDir)</PreBuildEvent>
+  </PropertyGroup>
 </Project>

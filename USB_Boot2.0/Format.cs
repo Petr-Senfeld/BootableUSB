@@ -1,40 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
+
 
 namespace USB_boot
 {
     class Format
     {
-        public static bool FormatDrive(string drive)
+        public static async Task FormatDriveAsync(string drive) 
         {
-            bool success = false;
-            int indexOfDrive = GetIndexOfDrive(drive);
-            try
+            await Task.Run(() =>
             {
-                Process process = new Process();
-                process.StartInfo.FileName = "diskpart.exe";
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.WorkingDirectory = Environment.SystemDirectory;
-                process.StartInfo.CreateNoWindow = true;
-                process.StartInfo.RedirectStandardInput = true;
-                process.StartInfo.RedirectStandardOutput = true;
-                process.Start();
-                process.StandardInput.WriteLine("select disk " + indexOfDrive);
-                process.StandardInput.WriteLine("clean");
-                process.StandardInput.WriteLine("convert mbr");
-                process.StandardInput.WriteLine("create partition primary");
-                process.StandardInput.WriteLine("select partition 1");
-                process.StandardInput.WriteLine("format FS=FAT32 label=Windows10 quick");
-                process.StandardInput.WriteLine("assign letter=" + drive);
-                process.StandardInput.WriteLine("exit");
-                // string output = process.StandardOutput.ReadToEnd();
-                process.WaitForExit();
-            }
-            catch (Exception) { }
-            return success;
+                FormatDrive(drive);
+            });
         }
-        public static int GetIndexOfDrive(string drive)
+
+        private static void FormatDrive(string drive)
+        {
+            int indexOfDrive = GetIndexOfDriveAsync(drive);
+            Process process = new Process();
+            process.StartInfo.FileName = "diskpart.exe";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.WorkingDirectory = Environment.SystemDirectory;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.RedirectStandardInput = true;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.Start();
+            process.StandardInput.WriteLine("select disk " + indexOfDrive);
+            process.StandardInput.WriteLine("clean");
+            process.StandardInput.WriteLine("convert mbr");
+            process.StandardInput.WriteLine("create partition primary");
+            process.StandardInput.WriteLine("select partition 1");
+            process.StandardInput.WriteLine("format FS=FAT32 label=Windows10 quick");
+            process.StandardInput.WriteLine("assign letter=" + drive);
+            process.StandardInput.WriteLine("exit");
+            // string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+        }
+        public static int GetIndexOfDriveAsync(string drive)
         {
             // execute DiskPart to get list of volumes
             Process process = new Process();

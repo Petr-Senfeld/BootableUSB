@@ -1,16 +1,23 @@
 ﻿using DiscUtils;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Windows;
+using System.Threading.Tasks;
 
 namespace USB_boot
 {
     // used sample from https://stackoverflow.com/questions/10579964/extract-iso-with-winrar-automatically-with-c-sharp-or-batch
     class IsoExtraction
     {
-        public static void ReadIsoFile(string sIsoFile, string sDestinationRootPath)
+        public static async Task ReadIsoFileAsync(string sIsoFile, string sDestinationRootPath)
+        {
+            await Task.Run(() =>
+            {
+                ReadIsoFile(sIsoFile, sDestinationRootPath);
+            });
+        }
+
+        private static void ReadIsoFile(string sIsoFile, string sDestinationRootPath)
         {
             Stream streamIsoFile = null;
             try
@@ -27,11 +34,6 @@ namespace USB_boot
                     ReadIsoFolder(dfs, @"", sDestinationRootPath);
                     return;
                 }
-            }
-            catch(FileNotFoundException e)
-            {
-                MessageBox.Show($"Cesta k souboru neexistuje: {sIsoFile} \nZkontrolujte prosím data\\config.xml");
-                Application.Current.Shutdown();
             }
             finally
             {
