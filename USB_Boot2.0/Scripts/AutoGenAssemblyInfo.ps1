@@ -1,40 +1,7 @@
-#requires -version 3
+param($projectDir)
 
-<#
-.SYNOPSIS
-Automatically Generate Assembly Version
-Change version information in Visual Studio project file AssemblyInfo.cs. Values AssemblyFileVersion and AssemblyVersion.
-
-.DESCRIPTION
-Automatically Generate Assembly Version
-(c) 2017-2018 Michal Zobec, ZOBEC Consulting. All Rights Reserved.
-web: www.michalzobec.cz, mail: michal@zobec.net
-License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) https://creativecommons.org/licenses/by-sa/4.0/
-
-.PARAMETER $(ProjectDir)
-Full path to project directory. By default will called as prebuild command:
-"%windir%\System32\WindowsPowerShell\v1.0\powershell.exe" -executionpolicy bypass -file <full path to script file AutoGenAssemblyVersion.ps1><full path to project directory>
-
-Example with Visual Studio values:
-"%windir%\System32\WindowsPowerShell\v1.0\powershell.exe" -executionpolicy bypass -file $(ProjectDir)\CommonTools\AutoGenAssemblyVersion.ps1 $(ProjectDir)
-
-.OUTPUTS
-Output is forwarded to Visual Studio build output console.
-
-.EXAMPLE
-C:\> "%windir%\System32\WindowsPowerShell\v1.0\powershell.exe" -executionpolicy bypass -file $(ProjectDir)\CommonTools\AutoGenAssemblyVersion.ps1 C:\DEV\PROJECT1\
-
-.LINK
-http://www.michalzobec.cz/
-
-#>
-
-param(
-	[string]$ProjectDir
-) 
-
-$filePath = $ProjectDir + "Properties\AssemblyInfo.cs"
-$xmlPath = $ProjectDir + "Scripts\config.xml"
+$filePath = "$projectDir" + "Properties\AssemblyInfo.cs"
+$xmlPath = "$projectDir" + "scripts\config.xml"
 if(![System.IO.File]::Exists($filePath))
 {
     Write-Error "AssemblyInfo.cs file does not exist on filepath $filePath"
