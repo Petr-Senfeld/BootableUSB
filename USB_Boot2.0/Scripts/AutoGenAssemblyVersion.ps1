@@ -31,11 +31,11 @@ http://www.michalzobec.cz/
 Set-StrictMode -Version Latest
 
 param(
-	[string]$projectDir
-)
+	[string]$ProjectDir
+) 
 
-$filePath = "$projectDir" + "Properties\AssemblyInfo.cs"
-$xmlPath = "$projectDir" + "Scripts\config.xml"
+$filePath = $ProjectDir + "Properties\AssemblyInfo.cs"
+$xmlPath = $ProjectDir + "Scripts\config.xml"
 if(![System.IO.File]::Exists($filePath))
 {
     Write-Error "AssemblyInfo.cs file does not exist on filepath $filePath"

@@ -102,8 +102,8 @@ namespace USB_boot
             window.Close();
             MessageBox.Show("Hotovo");
 
-            // Method to Eject drive after work is done
-            //USBEject.EjectDrive(USBdriveLetter);
+            // Calling a method to Eject drive after work is done
+            USBEject.EjectDrive(USBdriveLetter);
         }
 
         private void Button_Create_USB(object sender, RoutedEventArgs e)
